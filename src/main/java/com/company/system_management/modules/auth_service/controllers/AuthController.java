@@ -4,6 +4,7 @@ import com.company.system_management.custom.APIResponse;
 import com.company.system_management.modules.auth_service.resources.requests.LoginRequest;
 import com.company.system_management.modules.auth_service.resources.responses.AuthenticateResponse;
 import com.company.system_management.modules.auth_service.services.interfaces.IAuthService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -20,7 +21,7 @@ public class AuthController {
     IAuthService authService;
 
     @PostMapping("/login")
-    APIResponse<AuthenticateResponse> login(@RequestBody LoginRequest request) {
+    APIResponse<AuthenticateResponse> login(@Valid @RequestBody LoginRequest request) {
         AuthenticateResponse response = authService.authenticate(request);
         return APIResponse.<AuthenticateResponse>builder()
                 .result(response)

@@ -50,6 +50,7 @@ public class UserService implements IUserService {
                 .username(result.getUsername())
                 .email(result.getEmail())
                 .phone(result.getPhone())
+                .address(request.address())
                 .dob(result.getDob())
                 .build();
     }
@@ -61,16 +62,14 @@ public class UserService implements IUserService {
         User user = userRepository.findById(userId)
                 .orElseThrow(() -> new AppException(EApplicationCode.ACCOUNT_NOT_EXIST));
 
-        User updateUser = User.builder()
-                .username(request.username())
-                .password(request.password())
-                .email(request.email())
-                .phone(request.phone())
-                .address(request.address())
-                .dob(request.dob())
-                .build();
+        user.setUsername(request.username());
+        user.setPassword(passwordEncoder.encode(request.password()));
+        user.setEmail(request.email());
+        user.setPhone(request.phone());
+        user.setAddress(request.address());
+        user.setDob(request.dob());
 
-        User result = userRepository.save(updateUser);
+        User result = userRepository.save(user);
 
         return UserResponse.builder()
                 .userId(result.getUserId())

@@ -5,8 +5,8 @@ spring:
     import: optional:application-secret.yaml
   datasource:
     url: jdbc:mysql://localhost:3306/system_management
-    username:
-    password:
+    username: root
+    password: dinh1012
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
@@ -17,5 +17,5 @@ server:
   port: 8080
 
 jwt:
-  secret:
+  secret: RSX08a_6PdPKiMg75S00AgR30_ekDqOBq3poGSVmBOqLhuZ7nwWfDASfhUbQ0VbiwKDwJjm26J8kb4eJUzGZJw
   expiration-time: 3600000

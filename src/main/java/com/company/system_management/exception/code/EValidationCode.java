@@ -18,6 +18,7 @@ public enum EValidationCode {
     INVALID_EMAIL(104, "Email is invalid", HttpStatus.BAD_REQUEST),
     INVALID_PHONE(105, "Phone must long as {length} character and around from 0-9", HttpStatus.BAD_REQUEST),
     INVALID_DOB(106, "Your age must be at least {min}", HttpStatus.BAD_REQUEST),
+    NOT_NULL(107, "This field must not null", HttpStatus.BAD_REQUEST),
 
     ;
     int code;

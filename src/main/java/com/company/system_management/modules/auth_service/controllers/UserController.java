@@ -4,6 +4,7 @@ import com.company.system_management.custom.APIResponse;
 import com.company.system_management.modules.auth_service.resources.requests.UserRequest;
 import com.company.system_management.modules.auth_service.resources.responses.UserResponse;
 import com.company.system_management.modules.auth_service.services.interfaces.IUserService;
+import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
@@ -18,7 +19,7 @@ public class UserController {
     IUserService userService;
 
     @PostMapping
-    APIResponse<UserResponse> createUser(@RequestBody UserRequest request) {
+    APIResponse<UserResponse> createUser(@Valid @RequestBody UserRequest request) {
         UserResponse response = userService.createUser(request);
         return APIResponse.<UserResponse>builder()
                 .result(response)
@@ -29,7 +30,7 @@ public class UserController {
     @PutMapping("/{userId}")
     APIResponse<UserResponse> updateUser(
             @PathVariable("userId") Long userId,
-            @RequestBody UserRequest request
+            @Valid @RequestBody UserRequest request
     ) {
         UserResponse response = userService.updateUser(userId, request);
         return APIResponse.<UserResponse>builder()
